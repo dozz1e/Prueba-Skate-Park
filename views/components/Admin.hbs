@@ -1,0 +1,55 @@
+<section id="admin">
+	<div class="container">
+		<div class="row p-2">
+			<div class="col-md-4 p-0">
+				<img src="{{usuario.foto}}" alt="{{usuario.nombre}}" width="250px" />
+			</div>
+			<div class="col-md-8 d-flex align-items-center">
+				<h1>{{usuario.nombre}}</h1>
+			</div>
+		</div>
+		<div class="row">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Foto</th>
+						<th scope="col">Nombre</th>
+						<th scope="col">Años de Experiencia</th>
+						<th scope="col">Especialidad</th>
+						<th scope="col">Estado</th>
+					</tr>
+				</thead>
+				<tbody id="adminTable">
+					{{#if usuarios}}
+						{{#each usuarios}}
+              <tr>
+                <td>{{add @index}}</td>
+                <td><img src="{{this.foto}}" alt="{{this.nombre}}" /></td>
+                <td>{{this.nombre}}</td>
+                <td>{{this.anos_experiencia}}</td>
+                <td>{{this.especialidad}}</td>
+                <td><input type="checkbox" {{#if this.estado}} checked {{/if}} onclick="changeStatus({{this.id}}, {{this.estado}})" value="1"></td>
+              </tr>
+            {{/each}}
+					{{/if}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
+
+<script>
+  const changeStatus = async (id, e) => {
+    let auth = !e
+    const result = await axios.put("http://localhost:3000/editarstatus/" + id, {
+      auth
+    })
+    result ? alert(auth ? "Usuario autenticado." : "Usuario en revisión.") : alert('Error al modificar permisos.');
+  }
+</script>
+
+<style>
+	#admin .container{ background: rgba(0,0,0,.1); margin-top: 80px; }
+	#admin h1{ text-transform: uppercase; }
+</style>

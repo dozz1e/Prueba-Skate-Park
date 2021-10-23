@@ -1,0 +1,42 @@
+<div id="ingreso" class="container form-ingreso">
+	<div class="py-3 formulario">
+		<h2>Iniciar Sesión</h2>
+		<hr />
+		<div
+			class="py-2 alert alert-danger d-flex align-items-center d-none"
+			role="alert"
+			id="errorIngreso"
+		></div>
+		<form id="formIngreso">
+			<div class="form-group">
+				<div class="form-group p-2">
+					<label for="email">Email</label>
+					<input
+						type="email"
+						name="emailIngreso"
+						class="form-control m-auto"
+						id="emailIngreso"
+						required
+					/>
+				</div>
+				<div class="form-group p-2">
+					<label for="password">Password</label>
+					<input
+						type="password"
+						name="passwordIngreso"
+						class="form-control m-auto"
+						id="passwordIngreso"
+						required
+					/>
+				</div>
+			</div>
+			<button
+				type="submit"
+				name="btnIngresar"
+				class="btn btn-success mb-3"
+				id="btnIngresar"
+			>Ingresar</button>
+			<p>¿Aún no tienes cuenta? <a href="/registrar">Regístrate</a></p>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,94 @@
+<div id="registro" class="container form-ingreso">
+	<div class="py-3 formulario">
+		<h2>Registro</h2>
+		<hr />
+		{{#if final}}
+			<div class="py-2 alert {{#if this.error}}alert-danger{{else}}alert-success{{/if}} d-flex align-items-center" role="alert">
+				<div>
+					{{this.mensaje}}
+				</div>
+			</div>
+		{{/if}}
+		<form
+			id="formRegistro"
+			method="POST"
+			action="/registrar"
+			enctype="multipart/form-data"
+		>
+			<div class="form-group row m-auto">
+				<div class="form-group col-12 col-sm-6 py-2">
+					<label>Email</label>
+					<input
+						id="emailRegistro"
+						name="emailRegistro"
+						type="email"
+						class="form-control m-auto"
+						placeholder="nombre@ejemplo.cl"
+						required
+					/>
+				</div>
+				<div class="form-group col-12 col-sm-6 py-2">
+					<label>Nombre</label>
+					<input
+						id="nombreRegistro"
+						name="nombreRegistro"
+						type="text"
+						class="form-control m-auto"
+						required
+					/>
+				</div>
+				<div class="form-group col-12 col-sm-6 py-2">
+					<label>Password</label>
+					<input
+						id="pass1Registro"
+						name="pass1Registro"
+						type="password"
+						class="form-control m-auto"
+						required
+					/>
+				</div>
+				<div class="form-group col-12 col-sm-6 py-2">
+					<label>Repita la password</label>
+					<input
+						id="pass2Registro"
+						name="pass2Registro"
+						type="password"
+						class="form-control m-auto"
+						required
+					/>
+				</div>
+				<div class="form-group col-12 col-sm-6 py-2">
+					<label>Años de experiencia</label>
+					<input
+						id="expRegistro"
+						name="expRegistro"
+						type="number"
+						min="1"
+						class="form-control m-auto"
+						required
+					/>
+				</div>
+				<div class="form-group col-12 col-sm-6 py-2">
+					<label>Especialidad</label>
+					<input
+						id="especialidadRegistro"
+						name="especialidadRegistro"
+						type="text"
+						class="form-control m-auto"
+						required
+					/>
+				</div>
+				<div class="form-group col-12 col-sm-12 py-2">
+					<label>Foto de perfil</label>
+					<input id="fotoRegistro" name="fotoRegistro" type="file" required />
+				</div>
+			</div>
+			<button
+				name="btnRegistrar"
+				class="btn btn-success mb-3"
+				id="btnRegistrar"
+			>Registrarme</button>
+			<p><a href="/ingresar"> Iniciar sesión</a></p>
+		</form>
+	</div>
+</div>

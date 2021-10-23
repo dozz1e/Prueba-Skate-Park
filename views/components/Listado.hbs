@@ -1,0 +1,62 @@
+<section id="listado" class="container">
+	<h2 class="py-3">Listado Participantes</h2>
+	<ul>
+		{{#each usuarios}}
+			<li>
+				<div class="card mb-3">
+					<div class="row g-0">
+						<div class="col-md-4 imagen">
+							<span class="posicion{{add @index}} posicion">#{{add @index}}</span>
+							<img
+								src="{{this.foto}}"
+								class="img-fluid"
+								alt="{{this.nombre}}"
+							/>
+						</div>
+						<div class="col-md-8">
+							<div class="card-body">
+								<h5 class="card-title">{{this.nombre}}</h5>
+								<p class="card-text"><strong>Especialidad:
+									</strong>{{this.especialidad}}</p>
+								<p class="card-text__data">
+									{{this.anos_experiencia}}
+									año(s) de experiencia
+									<div class="revision">
+										<div
+											class="alert {{#if this.estado}}alert-success{{else}}alert-warning{{/if}} d-flex align-items-center"
+											role="alert"
+										>
+											<div>
+												{{#if this.estado}}Aprobado{{else}}En revisión{{/if}}
+											</div>
+										</div>
+									</div>
+								</p>
+								<span class="tipo_participante">
+									{{leyenda this.anos_experiencia }}
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		{{/each}}
+	</ul>
+</section>
+
+<style>
+	#listado .card { background: var(--primary); border: none;} #listado
+	.card-body{position: relative;} #listado .card-title, #listado .card-text{
+	color: var(--fondo); } #listado .card-title{ font-weight: bold;} #listado
+	.card-text__data{ background: var(--fondo); color: var(--texto); margin-right:
+	-20px; margin-bottom: 0; padding: 10px;} #listado .tipo_participante{ border:
+	7px solid var(--fondo);background: var(--texto); color:
+	var(--fondo);font-size: 1.5rem; font-weight: bold; padding: 10px; position:
+	absolute; right:-10px; top: -60px;} #listado .imagen{ position: relative; }
+	#listado .imagen img{ height: 500px; } #listado .posicion{ line-height: 1; left:
+	5px;font-size: 2rem; position: absolute; text-shadow: 5px 5px 1px rgba(0,0,0,.6); top: 5px;} #listado .alert{ padding: 10px; margin-top: 5px;	margin-bottom: 0;} @media (min-width: 768px) { #listado .imagen img{
+	height:300px; } #listado .tipo_participante{ top: auto; right: 10px;} }
+	#listado .posicion1{ font-size: 4rem !important; color: gold !important;}
+	#listado .posicion2{ font-size: 3rem !important; color: silver !important;}
+	#listado .posicion3{ font-size: 2rem !important; color: brown !important;}
+</style>
