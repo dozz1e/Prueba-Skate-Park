@@ -1,3 +1,4 @@
+// Formulario Ingreso
 $("#formIngreso").on("submit", async (e) => {
 	e.preventDefault();
 	const email = $("#emailIngreso").val().toLowerCase();

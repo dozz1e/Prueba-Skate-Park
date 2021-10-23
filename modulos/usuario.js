@@ -2,9 +2,11 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { unlink } = require("fs");
 
+// CONFIG SECRETS -----------------
 const rondas = 10;
 const secretKey = "Mi super clave";
 
+// CONFIG POOL --------------------
 const { Pool } = require("pg");
 
 const pool = new Pool({
@@ -15,8 +17,11 @@ const pool = new Pool({
 	port: 5432,
 });
 
+// FUNCIONES ----------------------
+// Login usuario
 const getUsuario = async (email, password) => {
 	try {
+		// Solo cosulta si existe el correo
 		const consulta = {
 			text: "SELECT * FROM skaters WHERE email = $1;",
 			values: [email],
@@ -24,6 +29,7 @@ const getUsuario = async (email, password) => {
 		const result = await pool.query(consulta);
 		if (result.rowCount > 0) {
 			let pass = result.rows[0].password;
+			// Comparación de contraseñas
 			let valor = bcrypt.compareSync(password, pass);
 			if (valor) {
 				return {
@@ -48,6 +54,7 @@ const getUsuario = async (email, password) => {
 	}
 };
 
+// Token
 const tkUsuario = async (usuario) => {
 	const token = jwt.sign(
 		{
@@ -59,6 +66,7 @@ const tkUsuario = async (usuario) => {
 	return token;
 };
 
+// Crear usuario
 const setUsuario = async (usuario, url) => {
 	const passHash = bcrypt.hashSync(usuario[2], rondas);
 	const correo = usuario[0].toLowerCase();
@@ -82,6 +90,7 @@ const setUsuario = async (usuario, url) => {
 	}
 };
 
+// Listado de todos los participantes
 const getUsuarios = async () => {
 	try {
 		const result = await pool.query(
@@ -94,6 +103,7 @@ const getUsuarios = async () => {
 	}
 };
 
+// Actualizar estado de participante
 const updateUsuarioStatus = async (auth, id) => {
 	try {
 		const result = await pool.query(
@@ -106,6 +116,7 @@ const updateUsuarioStatus = async (auth, id) => {
 	}
 };
 
+// Actualizar participante
 const updateUsuario = async (id, datos) => {
 	const nombre = datos[0],
 		password = datos[1],
@@ -113,6 +124,7 @@ const updateUsuario = async (id, datos) => {
 		especialidad = datos[4];
 	try {
 		let consulta = {};
+		// Distintas consultas dependiendo si se actualizó la contraseña
 		if (password) {
 			let passHash = bcrypt.hashSync(password, rondas);
 			consulta = {
@@ -134,6 +146,7 @@ const updateUsuario = async (id, datos) => {
 	}
 };
 
+// Eliminar participante
 const eliminarUsuario = async (id) => {
 	try {
 		const imagen = await pool.query(
@@ -145,6 +158,7 @@ const eliminarUsuario = async (id) => {
 			values: [id],
 		};
 		const result = await pool.query(consulta);
+		// Borrar imagen del participante
 		if (result.rowCount > 0) {
 			unlink(urlImg, () => true);
 		}

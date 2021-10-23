@@ -1,3 +1,4 @@
+// Formulario de edición de participante
 $("#btnEditar").on("click", (e) => {
 	e.preventDefault();
 	const pass1 = $("#pass1Editar").val();

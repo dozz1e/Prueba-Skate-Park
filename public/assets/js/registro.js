@@ -1,3 +1,4 @@
+// Formulario de registro
 $("#btnRegistrar").on("click", (e) => {
 	e.preventDefault();
 	const pass1 = $("#pass1Registro").val();
