@@ -41,7 +41,7 @@ Pasos para la instalación desde github.
 
 ```
 # clonar repositorio
-$ git clone https://github.com/dozz1e/Prueba---Banco-Solar
+$ git clone https://github.com/dozz1e/Prueba-Skate-Park
 
 # Ruta a directorio clonado
 $ cd ../ruta/al/directorio/clonado
@@ -66,32 +66,59 @@ $ npm run generate
 
 Lista de extras agregados al código
 
-1. **Modificación index.html**
+1. **Creación vista**
 
-   - En los "options" se modificó el value, de nombre a las ids de los usuarios.
-   - Al eliminar un usuario, en vez de cargar nuevamente usuarios y transacciones, opte mejor por recargar la página, ya que el select no se actulizaba y seguía mostrando el usuario eliminado.
-   - Cambié el formato de moment a "DD/MM/YYYY HH:mm:ss" para mostrar el formato pedido.
+   - Creación de vista desde cero.
 
 2. **Estructura de proyecto**
 
    Archivo principal server.js
 
    Directorio modulos:
-   -- transfencias
 
-   - funciones: Manejo de datos del Front de las transferencias y lógica del JS.
-   - index: Manejo de la conexión Pool de las transferencias.
-
-   -- usuarios
-
-   - funciones: Manejo de datos del Front de los usuarios y lógica del JS.
-   - index: Manejo de la conexión Pool de los usuarios.
+   - usuario
+     -- getUsuario: Hace login del usuario.
+     -- tkUsuario: Agrega token al usuario.
+     -- setUsuario: Registra usuario.
+     -- getUsuarios: Trae todos los participantes.
+     -- updateUsuarioStatus: Actualiza estado del participante.
+     -- updateUsuario: Actualiza participante.
+     -- eliminarUsuario: Elimina participante.
 
    Directorio public:
 
-   - index.html
-   - favicon PNG
+   - assets/
+     -- css
+     -- images
+     -- js
+
+   - favicon SVG
+
+   Views
+
+   - Login
+   - Main
+   - Register
+   - Usuario
+
+   Partials
+
+   - Admin: Vista de la página administrador.
+   - Ingreso: Formuario para ingreso de usuario.
+   - Listado: Muestra lista de participantes en la vista Main.
+   - Menu: Menú principal.
+   - Participante: Vista de la página de cada participante.
+   - Portada: Portada de la vista Main.
+   - Registro: Formulario de registro.
 
 3. **Conexión Pool**
 
-   Una sola conexión creada en el archivo server.js y pasada vía parametros a todas las funciones que la necesiten.
+   Dentro del modulo usuario.js
+
+4. **BBDD**
+
+   Modificación de la base de datos incluído en el archivo database.sql
+
+5. **Administrador**
+
+   La vista busca a un administrador con cuenta "admin", agregado en el archivo sql.
